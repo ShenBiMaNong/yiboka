@@ -42,8 +42,7 @@ jobs:
       run: ls
     
     - name: 移除已存在compose
-      run: sshpass -p ${{secrets.PWD}} ssh -o StrictHostKeyChecking=no ${{secrets.USER}}@${{secrets.IP}} "docker-compose stop yiboka && docker-compose rm yiboka
-"
+      run: sshpass -p ${{secrets.PWD}} ssh -o StrictHostKeyChecking=no ${{secrets.USER}}@${{secrets.IP}} "docker-compose stop yiboka && docker-compose rm yiboka"
 
   deploye: 
     runs-on: ubuntu-latest
