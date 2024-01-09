@@ -22,16 +22,16 @@ jobs:
     - uses: actions/checkout@v3
 
     - name: 删除旧的包
-      run: sshpass -p ${{secrets.PWD}} ssh -o StrictHostKeyChecking=no ${{secrets.USER}}@${{secrets.IP}} "cd /${{secrets.USER}} && rm -rf yiboka && mkdir yiboka && cd yiboka"
+      run: sshpass -p ${{secrets.PWD}} ssh -o StrictHostKeyChecking=no ${{secrets.USER}}@${{secrets.IP}} "cd /ubuntu && rm -rf yiboka && mkdir yiboka && cd yiboka"
 
     - name: 压缩
       run: tar -czvf code.tar.gz ./*
   
     - name: 上传包和Dockerfile到服务器中
-      run: sshpass -p ${{secrets.PWD}} scp -r -o StrictHostKeyChecking=no ./code.tar.gz ${{secrets.USER}}@${{secrets.IP}}:/${{secrets.USER}}/yiboka
+      run: sshpass -p ${{secrets.PWD}} scp -r -o StrictHostKeyChecking=no ./code.tar.gz ${{secrets.USER}}@${{secrets.IP}}:/ubuntu/yiboka
 
     - name: 解压
-      run: sshpass -p ${{secrets.PWD}} ssh -o StrictHostKeyChecking=no ${{secrets.USER}}@${{secrets.IP}} "cd /${{secrets.USER}}/yiboka && tar -xzvf code.tar.gz"
+      run: sshpass -p ${{secrets.PWD}} ssh -o StrictHostKeyChecking=no ${{secrets.USER}}@${{secrets.IP}} "cd /ubuntu/yiboka && tar -xzvf code.tar.gz"
   
   check: 
     runs-on: ubuntu-latest
@@ -50,5 +50,5 @@ jobs:
     steps:
     
     - name: 部署
-      run: sshpass -p ${{secrets.PWD}} ssh -o StrictHostKeyChecking=no ${{secrets.USER}}@${{secrets.IP}} "cd /${{secrets.USER}}/yiboka && docker-compose -f docker-compose.yml up -d yiboka"
+      run: sshpass -p ${{secrets.PWD}} ssh -o StrictHostKeyChecking=no ${{secrets.USER}}@${{secrets.IP}} "cd /ubuntu/yiboka && docker-compose -f docker-compose.yml up -d yiboka"
     
