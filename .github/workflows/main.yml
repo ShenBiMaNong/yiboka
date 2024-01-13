@@ -25,7 +25,7 @@ jobs:
       run: sshpass -p ${{secrets.PWD}} ssh -o StrictHostKeyChecking=no ${{secrets.USER}}@${{secrets.IP}} "cd /home/ubuntu && rm -rf yiboka && mkdir yiboka && cd yiboka"
 
     - name: 压缩
-      run: tar -czvf code.tar.gz ./
+      run: tar -czvf code.tar.gz ./* .[!.]*
   
     - name: 上传包和Dockerfile到服务器中
       run: sshpass -p ${{secrets.PWD}} scp -r -o StrictHostKeyChecking=no ./code.tar.gz ${{secrets.USER}}@${{secrets.IP}}:/home/ubuntu/yiboka
