@@ -42,7 +42,7 @@ jobs:
       run: ls
     
     - name: 移除已存在compose
-      run: sshpass -p ${{secrets.PWD}} ssh -o StrictHostKeyChecking=no ${{secrets.USER}}@${{secrets.IP}} "sudo docker-compose stop yiboka-web1 && sudo docker-compose rm yiboka-web1"
+      run: sshpass -p ${{secrets.PWD}} ssh -o StrictHostKeyChecking=no ${{secrets.USER}}@${{secrets.IP}} "sudo docker stop yiboka-web1 && sudo docker rm yiboka-web1"
 
     - name: 移除spider镜像
       run: sshpass -p ${{secrets.PWD}} ssh -o StrictHostKeyChecking=no ${{secrets.USER}}@${{secrets.IP}} "sudo docker rmi yiboka-web"
