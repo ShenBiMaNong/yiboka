@@ -41,6 +41,6 @@ jobs:
       run: ls
     
     - name: 复制文件到目录，并覆盖
-      run: sshpass -p ${{secrets.PWD}} ssh -o StrictHostKeyChecking=no ${{secrets.USER}}@${{secrets.IP}} "sudo cp /home/ubuntu/acgfaka/* /www/wwwroot/acgfaka"
+      run: sshpass -p ${{secrets.PWD}} ssh -o StrictHostKeyChecking=no ${{secrets.USER}}@${{secrets.IP}} "sudo cp -rf /home/ubuntu/acgfaka/* /www/wwwroot/acgfaka"
 
     
